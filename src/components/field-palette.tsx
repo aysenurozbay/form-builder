@@ -1,9 +1,5 @@
-import type React from "react";
-export type FieldType = {
-  id: string;
-  name: string;
-  icon: React.ReactNode;
-};
+import { useDraggable } from "@dnd-kit/core";
+import type { FieldType } from "../types/form-field";
 
 const fieldTypes: FieldType[] = [
   {
@@ -76,6 +72,32 @@ const fieldTypes: FieldType[] = [
   },
 ];
 
+function DraggableField({ field }: { field: FieldType }) {
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    id: `palette-${field.id}`,
+    data: {
+      name: field.name,
+      type: field.id,
+    },
+  });
+
+  return (
+    <button
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      className={`group flex w-full items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 text-left transition-all hover:border-primary hover:bg-accent hover:shadow-sm active:scale-[0.98] ${
+        isDragging ? "opacity-50" : ""
+      }`}
+    >
+      <div className="flex h-8 w-8 items-center justify-center rounded-md bg-muted text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
+        {field.icon}
+      </div>
+      <span className="text-sm font-medium text-foreground">{field.name}</span>
+    </button>
+  );
+}
+
 export function FieldPalette() {
   return (
     <div className="p-4">
@@ -84,17 +106,7 @@ export function FieldPalette() {
       </h2>
       <div className="space-y-2">
         {fieldTypes.map((field) => (
-          <button
-            key={field.id}
-            className="group flex w-full items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 text-left transition-all hover:border-primary hover:bg-accent hover:shadow-sm active:scale-[0.98]"
-          >
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-muted text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
-              {field.icon}
-            </div>
-            <span className="text-sm font-medium text-foreground">
-              {field.name}
-            </span>
-          </button>
+          <DraggableField key={field.id} field={field} />
         ))}
       </div>
     </div>
