@@ -150,7 +150,7 @@ export function FormCanvas({
   });
 
   return (
-    <div className="mx-auto max-w-3xl p-8">
+    <div className="mx-auto max-w-5xl p-8">
       <div className="rounded-lg border border-border bg-card p-8 shadow-sm">
         <div className="mb-6">
           <h3 className="text-2xl font-semibold text-foreground">
