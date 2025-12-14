@@ -1,4 +1,5 @@
 import { FieldPalette } from "../field-palette";
+import { FormCanvas } from "../form-canvas";
 
 export default function FormBuilderPage() {
   return (
@@ -40,40 +41,7 @@ export default function FormBuilderPage() {
 
         {/* Center - Form Canvas */}
         <main className="flex-1 overflow-y-auto bg-muted/20">
-          <div className="mx-auto max-w-5xl p-8">
-            <div className="rounded-lg border border-border bg-card p-8 shadow-sm">
-              <div className="mb-6">
-                <h3 className="text-2xl font-semibold text-foreground">
-                  Untitled Form
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Drag fields from the left sidebar to build your form
-                </p>
-              </div>
-
-              {/* Placeholder Content */}
-              <div className="space-y-8">
-                <div className="flex min-h-[200px] items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
-                  <div className="text-center">
-                    <svg
-                      className="mx-auto h-12 w-12 text-muted-foreground"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M12 4v16m8-8H3" />
-                    </svg>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      Drop fields here to start building
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <FormCanvas />
         </main>
 
         {/* Right Sidebar - Field Settings */}
